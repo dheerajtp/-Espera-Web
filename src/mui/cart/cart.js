@@ -22,7 +22,7 @@ export const MUICartHeader = () => {
 
 export const MUICartMainWrap = ({ children }) => {
   return (
-    <Container>
+    <Container sx={{ margin: "2rem" }}>
       <Grid
         container
         spacing={3}
