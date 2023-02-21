@@ -3,16 +3,18 @@ import Header from "../components/common/Header";
 import Loading from "../components/common/Loading";
 import Sidebar from "../components/common/Sidebar";
 import { useGetCoupons } from "../utils/hooks/Coupons/useCoupons";
-import { MUICartMainWrap } from "../mui/cart/cart";
+import { MUICouponMainWrap } from "../mui/cart/cart";
 import SingleCoupon from "../components/Coupon/SingleCoupon";
+import { useSelector } from "react-redux";
 
 function Coupons() {
-  let { data, isSuccess } = useGetCoupons();
+  const user = useSelector((state) => state.user.value.user);
+  let { data, isSuccess } = useGetCoupons(user.user_id);
   return (
     <>
       <Header />
       {isSuccess ? (
-        <MUICartMainWrap>
+        <MUICouponMainWrap>
           {data.length === 0 ? (
             <p>Nothing to show here</p>
           ) : (
@@ -29,7 +31,7 @@ function Coupons() {
               );
             })
           )}
-        </MUICartMainWrap>
+        </MUICouponMainWrap>
       ) : (
         <Loading />
       )}

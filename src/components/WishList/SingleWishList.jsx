@@ -7,6 +7,7 @@ import {
   Typography,
   styled,
   CardActions,
+  Tooltip,
 } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { BASE_URL } from "../../configuration";
@@ -26,9 +27,9 @@ function SingleWishList({
   con_total_spots,
 }) {
   return (
-    <Grid item xs={12} sm={6} md={3} lg={3}>
+    <Grid item xs={12} sm={6} md={6} lg={6}>
       <Card
-        sx={{ display: "flex", minWidth: 400, maxWidth: 400, maxHeight: 350 }}
+        sx={{ display: "flex", minWidth: 500, maxWidth: 500, maxHeight: 400 }}
       >
         <img
           src={`${BASE_URL}images/contest_cover/${image}`}
@@ -43,7 +44,15 @@ function SingleWishList({
             minHeight: "200px",
           }}
         >
-          <Typography component="div" variant="h5" mt={10}>
+          <Typography
+            component="div"
+            variant="h5"
+            sx={{
+              mt: { xs: 2, md: 11 },
+              fontSize: { xs: "1.5rem", md: "2.5rem" },
+              lineHeight: { xs: "1.2", md: "1.5" },
+            }}
+          >
             {con_win}
           </Typography>
           <Typography
@@ -68,9 +77,11 @@ function SingleWishList({
             {con_spots}/{con_total_spots}
           </Typography>
           <CardActions sx={{ alignSelf: "flex-end" }}>
-            <IconButton>
-              <Delete />
-            </IconButton>
+            <Tooltip title="Remove from Wish List">
+              <IconButton>
+                <Delete />
+              </IconButton>
+            </Tooltip>
           </CardActions>
         </ScrollableCardContent>
       </Card>

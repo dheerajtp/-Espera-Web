@@ -30,7 +30,7 @@ function SingleItem({
 }) {
   let width_percent = (spot * 100) / total;
   const user = useSelector((state) => state.user.value.user);
-  let { refetch } = useAddToCart(con_id, product_id, user.id);
+  let { refetch } = useAddToCart(con_id, product_id, user.user_id);
   const addToCart = () => {
     if (user === null) {
       toast.error("Please login to continue");

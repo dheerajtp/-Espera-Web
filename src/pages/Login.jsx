@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import { createUser } from "../store/features/user";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import withAuthRedirect from "../components/common/withAuthRedirect";
+// import withAuthRedirect from "../components/common/withAuthRedirect";
 
 function Login() {
   const navigate = useNavigate();
@@ -105,4 +105,5 @@ function Login() {
   );
 }
 
-export default withAuthRedirect(Login, "/");
+export default Login;
+// export default withAuthRedirect(Login, "/");

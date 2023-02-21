@@ -4,8 +4,8 @@ import { MUICouponRow } from "../../mui/coupon/coupon";
 
 function SingleCoupon({ coupen, order_date, con_enddate, con_id, pr_price }) {
   return (
-    <Grid item xs={12} sm={6} md={3} lg={3}>
-      <Card sx={{ minWidth: 300 }}>
+    <Grid item xs={12} sm={6} md={4} lg={4}>
+      <Card sx={{ minWidth: 300, maxWidth: 300 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Coupon Number:

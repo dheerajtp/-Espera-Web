@@ -10,7 +10,7 @@ import { MUICartMainWrap } from "../mui/cart/cart";
 
 function MyCart() {
   const user = useSelector((state) => state.user.value.user);
-  let { data, isSuccess } = useGetCartItems(user.id);
+  let { data, isSuccess } = useGetCartItems(user.user_id);
   return (
     <>
       <Header />
