@@ -11,6 +11,9 @@ import {
 } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { BASE_URL } from "../../configuration";
+import { useRemoveItem } from "../../utils/hooks/WishList/useWishList";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ScrollableCardContent = styled(CardContent)({
   maxWidth: "50%",
@@ -26,6 +29,22 @@ function SingleWishList({
   con_spots,
   con_total_spots,
 }) {
+  const queryClient = useQueryClient();
+  const { mutate, isLoading } = useRemoveItem();
+
+  const onDelete = () => {
+    let data = { item_id: wishitem_id };
+    mutate(data, {
+      onSuccess: (data) => {
+        toast.success(data);
+        queryClient.invalidateQueries({ queryKey: ["get-user-wishlist"] });
+      },
+      onError: () => {
+        queryClient.invalidateQueries({ queryKey: ["get-user-wishlist"] });
+        toast.error("Some error occured");
+      },
+    });
+  };
   return (
     <Grid item xs={12} sm={6} md={6} lg={6}>
       <Card
@@ -79,7 +98,7 @@ function SingleWishList({
           <CardActions sx={{ alignSelf: "flex-end" }}>
             <Tooltip title="Remove from Wish List">
               <IconButton>
-                <Delete />
+                <Delete disabled={isLoading} onClick={onDelete} />
               </IconButton>
             </Tooltip>
           </CardActions>
