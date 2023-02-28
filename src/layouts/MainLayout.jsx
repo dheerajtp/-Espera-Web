@@ -7,6 +7,9 @@ import MyCart from "../pages/MyCart";
 import Profile from "../pages/Profile";
 import Wishlist from "../pages/Wishlist";
 import Login from "../pages/Login";
+import SingleProduct from "../pages/SingleProduct";
+import SignupPage from "../pages/SignupPage";
+import HowItWorks from "../pages/HowItWorks";
 
 function MainLayout() {
   return (
@@ -19,6 +22,9 @@ function MainLayout() {
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Error />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/single-product/:id" element={<SingleProduct />} />
+        <Route path="/register" element={<SignupPage />} />
+        <Route path="/how-it-works" element={<HowItWorks/>} />
       </Routes>
     </Router>
   );

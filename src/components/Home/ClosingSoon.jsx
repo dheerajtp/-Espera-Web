@@ -1,7 +1,7 @@
 import React from "react";
 import Loading from "../common/Loading";
 import { useGetEndingSpots } from "../../utils/hooks/Home/useHome";
-import { Box, Typography, Container, Grid } from "@mui/material";
+import { Typography, Container, Grid } from "@mui/material";
 import SingleItem from "../Cart/SingleItem";
 
 function ClosingSoon() {
@@ -24,11 +24,13 @@ function ClosingSoon() {
       <Container>
         <Grid
           container
-          spacing={3}
-          wrap="wrap"
-          justifyContent="center"
-          alignItems="center"
-          sx={{ overflow: "hidden" }}
+          spacing={2}
+          // container
+          // spacing={3}
+          // wrap="wrap"
+          // justifyContent="center"
+          // alignItems="center"
+          // sx={{ overflow: "hidden" }}
           //   sx={{
           //     display: "flex",
           //     flexDirection: { xs: "column", md: "row" },
@@ -36,37 +38,29 @@ function ClosingSoon() {
           //     margin: ".5rem",
           //   }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              gap: "2rem",
-              justifyContent: "space-around",
-            }}
-          >
-            {isSuccess ? (
-              data?.data.map((item) => {
-                return (
-                  <SingleItem
-                    key={item.id}
-                    con_id={item.con_id}
-                    product_id={item.product_id}
-                    type="closing"
-                    item={item.pr_name}
-                    thumb={item.con_thumbnails}
-                    status={item.con_status}
-                    total={item.con_total_spots}
-                    spot={item.con_spots}
-                    prName={item.pr_name}
-                    date={item.con_enddate}
-                  />
-                );
-              })
-            ) : isError ? (
-              <Loading />
-            ) : (
-              <Loading />
-            )}
-          </Box>
+          {isSuccess ? (
+            data?.data.map((item) => {
+              return (
+                <SingleItem
+                  key={item.id}
+                  con_id={item.con_id}
+                  product_id={item.product_id}
+                  type="closing"
+                  item={item.pr_name}
+                  thumb={item.con_thumbnails}
+                  status={item.con_status}
+                  total={item.con_total_spots}
+                  spot={item.con_spots}
+                  prName={item.pr_name}
+                  date={item.con_enddate}
+                />
+              );
+            })
+          ) : isError ? (
+            <Loading />
+          ) : (
+            <Loading />
+          )}
         </Grid>
       </Container>
     </>
