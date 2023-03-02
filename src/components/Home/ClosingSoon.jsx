@@ -16,27 +16,33 @@ function ClosingSoon() {
           alignItems: "center",
           justifyContent: "center",
           fontWeight: "900",
-          fontSize: 20,
+          fontSize: {
+            xs: 16,
+            sm: 18,
+            md: 20,
+          },
         }}
       >
         Closing Soon
       </Typography>
-      <Container>
+      <Container sx={{ maxWidth: "100%" }}>
         <Grid
           container
           spacing={2}
-          // container
-          // spacing={3}
-          // wrap="wrap"
-          // justifyContent="center"
-          // alignItems="center"
-          // sx={{ overflow: "hidden" }}
-          //   sx={{
-          //     display: "flex",
-          //     flexDirection: { xs: "column", md: "row" },
-          //     gap: "1rem",
-          //     margin: ".5rem",
-          //   }}
+          sx={{
+            display: "flex",
+            flexDirection: {
+              xs: "column",
+              sm: "row",
+            },
+            justifyContent: "center",
+            alignItems: "center",
+            gap: {
+              xs: 1,
+              sm: 2,
+              md: 4,
+            },
+          }}
         >
           {isSuccess ? (
             data?.data.map((item) => {

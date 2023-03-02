@@ -21,30 +21,25 @@ function SoldOut() {
       >
         Sold Out
       </Typography>
-      <Container>
+      <Container sx={{ maxWidth: "100%" }}>
         <Grid
           container
           spacing={2}
-          // container
-          // spacing={3}
-          // wrap="wrap"
-          // justifyContent="center"
-          // alignItems="center"
-          // sx={{ overflow: "hidden" }}
-          //   sx={{
-          //     display: "flex",
-          //     flexDirection: { xs: "column", md: "row" },
-          //     gap: "1rem",
-          //     margin: ".5rem",
-          //   }}
+          sx={{
+            display: "flex",
+            flexDirection: {
+              xs: "column",
+              sm: "row",
+            },
+            justifyContent: "center",
+            alignItems: "center",
+            gap: {
+              xs: 1,
+              sm: 2,
+              md: 4,
+            },
+          }}
         >
-          {/* <Box
-            sx={{
-              display: "flex",
-              gap: "2rem",
-              justifyContent: "space-around",
-            }}
-          > */}
           {isSuccess ? (
             data?.data.map((item) => {
               return (
@@ -68,7 +63,6 @@ function SoldOut() {
           ) : (
             <Loading />
           )}
-          {/* </Box> */}
         </Grid>
       </Container>
     </>

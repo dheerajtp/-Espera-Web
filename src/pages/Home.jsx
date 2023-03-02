@@ -11,7 +11,7 @@ function Home() {
   return (
     <>
       <Header />
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Box sx={{ display: "flex", flexDirection: "column",gap:".5rem" }}>
         <Covers />
         <ClosingSoon />
         <ActiveContest />

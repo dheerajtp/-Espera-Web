@@ -39,17 +39,32 @@ export const MUICartMainWrap = ({ children }) => {
 
 export const MUICouponMainWrap = ({ children }) => {
   return (
-    <Container sx={{ margin: "2rem" }}>
-      <Grid
-        container
-        spacing={10}
-        wrap="wrap"
-        justifyContent="center"
-        alignItems="center"
-        sx={{ overflow: "hidden" }}
-      >
-        {children}
-      </Grid>
-    </Container>
+    <Box
+      sx={{
+        margin: "2rem",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontWeight: "900",
+        fontSize: {
+          xs: 16,
+          sm: 18,
+          md: 20,
+        },
+      }}
+    >
+      <Container sx={{ margin: "2rem", maxWidth: "100%" }}>
+        <Grid
+          container
+          spacing={10}
+          wrap="wrap"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ overflow: "hidden" }}
+        >
+          {children}
+        </Grid>
+      </Container>
+    </Box>
   );
 };

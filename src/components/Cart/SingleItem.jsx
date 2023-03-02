@@ -40,9 +40,20 @@ function SingleItem({
   };
   if (type === "sold") {
     return (
-      <Grid item xs={12} sm={6} md={3} lg={3}>
-        <Card sx={{ maxWidth: 345, minWidth: 345 }}>
-          <CardMedia sx={{ height: 140 }} image={images.soldOut} title={item} />
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={4}
+        lg={3}
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <Card sx={{ minWidth: 240, maxWidth: 345 }}>
+          <CardMedia
+            sx={{ minHeight: 140, maxHeight: 150 }}
+            image={images.soldOut}
+            title={item}
+          />
           <CardContent>
             <Typography fontSize={14}>WIN {item}</Typography>
             <Typography> buy our {prName}</Typography>
@@ -61,10 +72,17 @@ function SingleItem({
     );
   } else {
     return (
-      <Grid item xs={12} sm={6} md={3} lg={3}>
-        <Card sx={{ maxWidth: 345, minWidth: 345 }}>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={4}
+        lg={3}
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <Card sx={{ minWidth: 240, maxWidth: 345 }}>
           <CardMedia
-            sx={{ height: 140 }}
+            sx={{ minHeight: 140, maxHeight: 150 }}
             image={`${BASE_URL}images/contest_cover/${thumb}`}
             title={item}
           />
