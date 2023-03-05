@@ -33,9 +33,8 @@ function SingleProduct() {
               }}
               centered
             >
-              <Tab label="Description" />
-              <Tab label="Specifications" />
-              <Tab label="Reviews" />
+              <Tab label="Prize Details" />
+              <Tab label="Product Details" />
             </Tabs>
             {value === 0 && (
               <Typography variant="body1" sx={{ p: 2 }}>
@@ -51,14 +50,6 @@ function SingleProduct() {
                 Aliquid earum vitae distinctio consequuntur reprehenderit fuga,
                 sint doloribus nisi rerum. Nesciunt magnam, ipsam dicta
                 doloribus nulla in adipisci ipsa atque quisquam.
-              </Typography>
-            )}
-            {value === 2 && (
-              <Typography variant="body1" sx={{ p: 2 }}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
-                molestias. Distinctio fugiat, voluptate cumque debitis aliquid
-                nesciunt ratione ducimus, tempore quasi ad nisi dolorum facilis
-                quo doloremque quaerat in maiores?
               </Typography>
             )}
             <Button

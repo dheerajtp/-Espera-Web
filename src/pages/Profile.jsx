@@ -29,6 +29,7 @@ function Profile() {
     { key: 3, name: "Active Coupons", route: "/coupons" },
     { key: 4, name: "Settings", route: "/settings" },
     { key: 5, name: "Logout", route: "/login" },
+    { key: 6, name: "How It Works", route: "/how-it-works" },
   ];
 
   if (Object.keys(user).length === 0) {
