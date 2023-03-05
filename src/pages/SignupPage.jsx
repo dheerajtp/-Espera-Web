@@ -131,8 +131,10 @@ const SignupPage = () => {
               <StyledButton
                 fullWidth
                 variant="contained"
-                color="primary"
                 type="submit"
+                sx={{
+                  bgcolor: "black",
+                }}
               >
                 Sign Up
               </StyledButton>

@@ -107,6 +107,9 @@ function Login() {
               type="submit"
               fullWidth
               variant="contained"
+              sx={{
+                bgcolor: "black",
+              }}
               disabled={isLoading}
             >
               {isLoading ? "Logging in..." : "Login"}
