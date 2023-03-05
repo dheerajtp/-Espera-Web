@@ -7,10 +7,14 @@ import { useSelector } from "react-redux";
 import Loading from "../components/common/Loading";
 import MyCartItem from "../components/Cart/MyCartItem";
 import { MUICartMainWrap } from "../mui/cart/cart";
+import { Navigate } from "react-router-dom";
 
 function MyCart() {
   const user = useSelector((state) => state.user.value.user);
   let { data, isSuccess } = useGetCartItems(user.user_id);
+  if (Object.keys(user).length === 0) {
+    return <Navigate to="/login" />;
+  }
   return (
     <>
       <Header />

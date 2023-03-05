@@ -6,10 +6,14 @@ import SingleWishList from "../components/WishList/SingleWishList";
 import { MUICouponMainWrap } from "../mui/cart/cart";
 import { useGetWishList } from "../utils/hooks/WishList/useWishList";
 import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 function Wishlist() {
   const user = useSelector((state) => state.user.value.user);
   let { data, isSuccess } = useGetWishList(user.user_id);
+  if (Object.keys(user).length === 0) {
+    return <Navigate to="/login" />;
+  }
   return (
     <>
       <Header />
