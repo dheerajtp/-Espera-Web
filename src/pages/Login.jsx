@@ -16,6 +16,7 @@ import { createUser } from "../store/features/user";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // import withAuthRedirect from "../components/common/withAuthRedirect";
+import { images } from "../assets/images";
 
 function Login() {
   const navigate = useNavigate();
@@ -62,6 +63,18 @@ function Login() {
     >
       <Container maxWidth="xs">
         <Box sx={{ mb: 3 }}>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box
+              component="img"
+              alt="logo"
+              align="center"
+              src={images.nameDark}
+              sx={{
+                height: "auto",
+                maxWidth: { xs: "40%", md: "50%" },
+              }}
+            ></Box>
+          </Box>
           <Typography variant="h4" align="center">
             Login
           </Typography>

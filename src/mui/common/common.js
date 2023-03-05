@@ -55,23 +55,50 @@ export const MUIBottomNavigationComponent = () => {
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
-  justifyContent: "space-around",
+  justifyContent: "space-between",
+  alignItems: "center",
 });
 
 const LogoAndTitle = styled(Box)({
   display: "flex",
-  gap: 1,
+  alignItems: "center",
+  gap: "0.5rem",
+  flex: "1",
+  "& img": {
+    maxWidth: { xs: "30%", sm: "20%", md: "4%" },
+  },
+  "& a": {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
+  },
 });
 
 const Icons = styled(Box)({
   display: "flex",
   alignItems: "center",
   gap: "2rem",
+  justifyContent: "space-between",
+  "& > div:first-of-type": {
+    marginLeft: "auto",
+  },
+  "@media (max-width: 959px)": {
+    gap: "1rem",
+  },
+  "@media (max-width: 599px)": {
+    gap: "0.5rem",
+  },
 });
 
 export const MUIHeaderComponent = () => {
   return (
-    <AppBar position="sticky">
+    <AppBar
+      position="sticky"
+      sx={{
+        padding: { xs: "12px", md: "24px" },
+        bgcolor: "black",
+      }}
+    >
       <StyledToolbar>
         <LogoAndTitle>
           <Link to="/">
@@ -81,7 +108,7 @@ export const MUIHeaderComponent = () => {
               src={images.logoLight}
               sx={{
                 height: "auto",
-                maxWidth: { xs: "20%", md: "4%" },
+                maxWidth: { xs: "20%", sm: "20%", md: "4%" },
                 display: {
                   xs: "block",
                   md: "none",
@@ -97,6 +124,10 @@ export const MUIHeaderComponent = () => {
               sx={{
                 height: "auto",
                 maxWidth: { xs: "40%", md: "50%" },
+                display: {
+                  xs: "none",
+                  md: "block",
+                },
               }}
             ></Box>
           </Link>
@@ -109,17 +140,26 @@ export const MUIHeaderComponent = () => {
           </Link>
           <Link to="/wish-list">
             <Favorite
-              sx={{ display: { xs: "none", md: "block" }, color: "white" }}
+              sx={{
+                display: { xs: "none", sm: "block", md: "block" },
+                color: "white",
+              }}
             />
           </Link>
           <Link to="/coupons">
             <CreditCard
-              sx={{ display: { xs: "none", md: "block" }, color: "white" }}
+              sx={{
+                display: { xs: "none", sm: "block", md: "block" },
+                color: "white",
+              }}
             />
           </Link>
           <Link to="/cart">
             <ShoppingCart
-              sx={{ display: { xs: "none", md: "block" }, color: "white" }}
+              sx={{
+                display: { xs: "none", sm: "block", md: "block" },
+                color: "white",
+              }}
             />
           </Link>
         </Icons>

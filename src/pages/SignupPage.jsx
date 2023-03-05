@@ -11,6 +11,7 @@ import { styled } from "@mui/material/styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerValidation } from "../utils/validation/registerValidation";
+import { images } from "../assets/images";
 
 const SignupPage = () => {
   const {
@@ -27,7 +28,23 @@ const SignupPage = () => {
   };
   return (
     <Grid container spacing={2} justifyContent="center">
-      <Grid item xs={12} md={6}>
+      <Grid
+        item
+        xs={12}
+        md={6}
+        sx={{ marginLeft: { xs: 2, sm: 0 }, marginRight: { xs: 2, sm: 0 } }}
+      >
+        <Box sx={{ display: "flex", justifyContent: "center"}} mt={2}>
+          <Box
+            component="img"
+            alt="logo"
+            src={images.nameDark}
+            sx={{
+              height: "auto",
+              maxWidth: { xs: "40%", md: "50%" },
+            }}
+          ></Box>
+        </Box>
         <Typography variant="h4" align="center" m={2}>
           Sign Up
         </Typography>
