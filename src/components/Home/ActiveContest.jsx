@@ -55,6 +55,7 @@ function ActiveContest() {
                   spot={item.con_spots}
                   prName={item.pr_name}
                   date={item.con_enddate}
+                  price={item?.pr_price}
                 />
               );
             })
