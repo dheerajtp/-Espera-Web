@@ -5,6 +5,7 @@ import {
   AppBar,
   Toolbar,
   styled,
+  Typography,
 } from "@mui/material";
 import { useBottomNav } from "../../utils/hooks/useBottomNav";
 import {
@@ -16,6 +17,7 @@ import {
 } from "@mui/icons-material/";
 import { images } from "../../assets/images";
 import { Link } from "react-router-dom";
+import { LinearProgress } from "@mui/material";
 
 export const MUIBottomNavigationComponent = () => {
   const [value, setValue] = useBottomNav(0);
@@ -165,5 +167,62 @@ export const MUIHeaderComponent = () => {
         </Icons>
       </StyledToolbar>
     </AppBar>
+  );
+};
+
+export const color = (progress) => {
+  var color = "";
+  if (progress > 50 && progress < 75) {
+    color = "#D8EE50";
+  } else if (progress >= 75) {
+    color = "#EE6D50";
+  } else {
+    color = "#50EE7C";
+  }
+  return color;
+};
+
+export const LinearGradientNew = ({ width_percent, sold, remaining }) => {
+  let col = color(width_percent);
+  const progress_bg_Colors = col + "50";
+  const progressColors = col + "00";
+  return (
+    <div style={{ position: "relative", height: "5px" }}>
+      <Box
+        sx={{
+          position: "relative",
+          height: "300px",
+          borderRadius: "4px",
+        }}
+      >
+        <LinearProgress
+          variant="determinate"
+          value={width_percent}
+          sx={{
+            "& .MuiLinearProgress-bar": {
+              backgroundImage: `linear-gradient(to right, ${progress_bg_Colors}, ${progressColors})`,
+              height: "100px",
+              borderRadius: "4px",
+            },
+            height: "20px",
+          }}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            left: "50%",
+            transform: "translate(-50%, -90%)",
+            zIndex: 2,
+            color: "black",
+            textAlign: "center",
+            width: "100%",
+          }}
+        >
+          <Typography variant="caption">
+            {sold} sold Out of {remaining}
+          </Typography>
+        </Box>
+      </Box>
+    </div>
   );
 };

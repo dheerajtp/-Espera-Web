@@ -11,7 +11,14 @@ function Home() {
   return (
     <>
       <Header />
-      <Box sx={{ display: "flex", flexDirection: "column",gap:".5rem" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: ".5rem",
+          marginBottom: 10,
+        }}
+      >
         <Covers />
         <ClosingSoon />
         <ActiveContest />
