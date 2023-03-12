@@ -15,6 +15,7 @@ import {
 import { images } from "../../assets/images";
 import { useAddToCart } from "../../utils/hooks/Cart/useCart";
 import { color, LinearGradientNew } from "../../mui/common/common";
+import { useNavigate } from "react-router-dom";
 
 function SingleItem({
   type,
@@ -29,6 +30,7 @@ function SingleItem({
   date,
   price,
 }) {
+  const navigate = useNavigate();
   let width_percent = (spot * 100) / total;
   const user = useSelector((state) => state.user.value.user);
   let { refetch } = useAddToCart(con_id, product_id, user.user_id);
@@ -77,7 +79,14 @@ function SingleItem({
             title={item}
           />
           <CardContent>
-            <Typography fontSize={14} fontWeight="bold">
+            <Typography
+              fontSize={14}
+              fontWeight="bold"
+              sx={{ cursor: "pointer" }}
+              onClick={() => {
+                navigate(`/single-product/${con_id}`);
+              }}
+            >
               WIN {item}
             </Typography>
             <Typography> buy our {prName}</Typography>
@@ -169,14 +178,29 @@ function SingleItem({
           />
           <CardContent>
             {type !== "addToCart" ? (
-              <Typography gutterBottom component="div" fontSize={12}>
+              <Typography
+                gutterBottom
+                component="div"
+                fontSize={12}
+                sx={{ cursor: "pointer" }}
+                onClick={() => {
+                  navigate(`/single-product/${con_id}`);
+                }}
+              >
                 Get a chance to
               </Typography>
             ) : (
               ""
             )}
 
-            <Typography fontSize={14} fontWeight="bold">
+            <Typography
+              fontSize={14}
+              fontWeight="bold"
+              sx={{ cursor: "pointer" }}
+              onClick={() => {
+                navigate(`/single-product/${con_id}`);
+              }}
+            >
               WIN {item}
             </Typography>
             {type === "addToCart" ? (
@@ -221,7 +245,7 @@ function SingleItem({
                   value={width_percent}
                   sx={{
                     "& .MuiLinearProgress-bar": {
-                      bgcolor: color(width_percent) + 50, // Replace with your desired color for the progress bar
+                      bgcolor: color(width_percent) + 50,
                     },
                     borderRadius: 5,
                     overflow: "hidden",
