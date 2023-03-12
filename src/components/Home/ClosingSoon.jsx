@@ -6,7 +6,6 @@ import SingleItem from "../Cart/SingleItem";
 
 function ClosingSoon() {
   const { data, isSuccess, isError } = useGetEndingSpots();
-  console.log(data);
   return (
     <>
       <Typography

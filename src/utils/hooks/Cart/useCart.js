@@ -1,5 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { addToCart, getCartItems } from "../../../services/Cart";
+import {
+  addToCart,
+  getCartItems,
+  getSingleProduct,
+} from "../../../services/Cart";
 import { toast } from "react-toastify";
 
 export const useAddToCart = (conId, proId, userId) => {
@@ -21,4 +25,8 @@ export const useAddToCart = (conId, proId, userId) => {
 
 export const useGetCartItems = (userId) => {
   return useQuery(["use-get-cart", userId], getCartItems);
+};
+
+export const useGetSingleProduct = (conId) => {
+  return useQuery(["use-single-product", conId], getSingleProduct);
 };
