@@ -196,7 +196,7 @@ function SingleProduct() {
                     Buy a {data[0].pr_name}
                   </Typography>
                   <Typography variant="body1" sx={{ color: "#fff" }}>
-                    {data[0].pr_price}.0 USD Inclusive of Vat
+                    {data[0].pr_price}.0 USD
                   </Typography>
                   <Typography variant="body1" sx={{ color: "#fff" }}>
                     Inclusive of Vat
