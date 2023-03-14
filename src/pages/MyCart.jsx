@@ -6,7 +6,7 @@ import { useGetCartItems } from "../utils/hooks/Cart/useCart";
 import { useSelector } from "react-redux";
 import Loading from "../components/common/Loading";
 import MyCartItem from "../components/Cart/MyCartItem";
-import { MUICartMainWrap } from "../mui/cart/cart";
+import { MUICouponMainWrap } from "../mui/cart/cart";
 import { Navigate } from "react-router-dom";
 
 function MyCart() {
@@ -20,7 +20,7 @@ function MyCart() {
       <Header />
       <MUICartHeader />
       {isSuccess ? (
-        <MUICartMainWrap>
+        <MUICouponMainWrap>
           {data.map((item) => {
             return (
               <MyCartItem
@@ -33,7 +33,7 @@ function MyCart() {
               />
             );
           })}
-        </MUICartMainWrap>
+        </MUICouponMainWrap>
       ) : (
         <Loading />
       )}

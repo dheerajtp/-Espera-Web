@@ -17,3 +17,11 @@ export const getCartItems = async ({ queryKey }) => {
   );
   return data;
 };
+
+export const getSingleProduct = async ({ queryKey }) => {
+  let conId = queryKey[1];
+  let { data } = await APIConfiguration.API.get(
+    `contest/getOneWithProduct/${conId}`
+  );
+  return data;
+};
