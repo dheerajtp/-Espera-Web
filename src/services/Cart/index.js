@@ -10,6 +10,19 @@ export const addToCart = async ({ queryKey }) => {
   return data;
 };
 
+export const addAddress = async (body) => {
+  let { data } = await APIConfiguration.API.post(`user/updateMyAddress`, body);
+  return data;
+};
+
+export const removeFromCart = async (body) => {
+  let { data } = await APIConfiguration.API.post(
+    `contest/removeFromCart`,
+    body
+  );
+  return data;
+};
+
 export const getCartItems = async ({ queryKey }) => {
   let userId = queryKey[1];
   let { data } = await APIConfiguration.API.get(
@@ -18,10 +31,20 @@ export const getCartItems = async ({ queryKey }) => {
   return data;
 };
 
+export const updateQuantity = async (body) => {
+  console.log(body);
+};
+
 export const getSingleProduct = async ({ queryKey }) => {
   let conId = queryKey[1];
   let { data } = await APIConfiguration.API.get(
     `contest/getOneWithProduct/${conId}`
   );
+  return data;
+};
+
+export const getAddress = async ({ queryKey }) => {
+  let userId = queryKey[1];
+  let { data } = await APIConfiguration.API.get(`user/getMyAddress/${userId}`);
   return data;
 };
