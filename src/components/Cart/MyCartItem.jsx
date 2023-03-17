@@ -10,8 +10,10 @@ import {
 } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 import { BASE_URL } from "../../configuration";
+import { useRemoveFromCart } from "../../utils/hooks/Cart/useCart";
 
 function MyCartItem({ quantity, pr_name, con_win, image, pr_price }) {
+  const { mutate, isLoading, isError, isSuccess } = useRemoveFromCart();
   return (
     <Grid item xs={12} sm={6} md={3} lg={3}>
       <Card

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/common/Header";
 import Sidebar from "../components/common/Sidebar";
 import { MUICartHeader } from "../mui/cart/cart";
-import { useGetCartItems } from "../utils/hooks/Cart/useCart";
+import { useGetCartItems, useGetAddress } from "../utils/hooks/Cart/useCart";
 import { useSelector } from "react-redux";
 import Loading from "../components/common/Loading";
 import MyCartItem from "../components/Cart/MyCartItem";
@@ -22,6 +22,10 @@ function MyCart() {
   };
   const user = useSelector((state) => state.user.value.user);
   let { data, isSuccess } = useGetCartItems(user.user_id);
+  let { data: address, isSuccess: addressIsSuccess } = useGetAddress(
+    user.user_id
+  );
+
   if (Object.keys(user).length === 0) {
     return <Navigate to="/login" />;
   }
