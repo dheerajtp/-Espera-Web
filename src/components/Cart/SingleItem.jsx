@@ -67,28 +67,33 @@ function SingleItem({
             backgroundColor: "#fff",
             paddingHorizontal: 10,
             paddingVertical: 2,
-            minHeight: 320,
-            maxHeight: 320,
+            minHeight: 340,
+            maxHeight: 340,
             position: "relative",
             borderWidth: 10,
             borderColor: "#E5E5E5",
           }}
         >
-          {/* <Box sx={{ display: "flex", alignItems: "center" }}> */}
-          <CardMedia
-            sx={{ minHeight: 140, maxHeight: 150 }}
-            image={images.soldOut}
-            title={item}
-          />
-          {/* <CardMedia
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <CardMedia
+              sx={{ minHeight: 140, maxHeight: 150, width: "50%" }}
+              image={images.soldOut}
+              title={item}
+            />
+            <CardMedia
               onClick={() => {
                 navigate(`/single-product/${con_id}`);
               }}
-              sx={{ minHeight: 140, maxHeight: 150 }}
+              sx={{
+                minHeight: 140,
+                maxHeight: 150,
+                width: "50%",
+                ml: 2,
+              }}
               image={`${BASE_URL}images/contest_cover/${pr_thumbnails}`}
               title={pr_thumbnails}
-            /> */}
-          {/* </Box> */}
+            />
+          </Box>
 
           <CardContent>
             <Typography
@@ -168,8 +173,8 @@ function SingleItem({
             backgroundColor: "#fff",
             paddingHorizontal: 10,
             paddingVertical: 2,
-            minHeight: 320,
-            maxHeight: 320,
+            minHeight: 340,
+            maxHeight: 340,
           }}
         >
           {type === "addToCart" ? (
@@ -183,29 +188,29 @@ function SingleItem({
           ) : (
             ""
           )}
-          {/* <Box sx={{ display: "flex", alignItems: "center" }}> */}
-          <CardMedia
-            onClick={() => {
-              navigate(`/single-product/${con_id}`);
-            }}
-            sx={{ minHeight: 140, maxHeight: 150 }}
-            image={`${BASE_URL}images/contest_cover/${thumb}`}
-            title={item}
-          />
-          {/* <CardMedia
-            onClick={() => {
-              navigate(`/single-product/${con_id}`);
-            }}
-            sx={{
-              minHeight: 140,
-              maxHeight: 150,
-              ml: 2,
-              mt: { xs: 2, sm: 0 },
-            }}
-            image={`${BASE_URL}images/contest_cover/${pr_thumbnails}`}
-            title={pr_thumbnails}
-          /> */}
-          {/* </Box> */}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <CardMedia
+              onClick={() => {
+                navigate(`/single-product/${con_id}`);
+              }}
+              sx={{ minHeight: 140, maxHeight: 150, width: "50%" }}
+              image={`${BASE_URL}images/contest_cover/${thumb}`}
+              title={item}
+            />
+            <CardMedia
+              onClick={() => {
+                navigate(`/single-product/${con_id}`);
+              }}
+              sx={{
+                minHeight: 140,
+                maxHeight: 150,
+                width: "50%",
+                ml: 2,
+              }}
+              image={`${BASE_URL}images/contest_cover/${pr_thumbnails}`}
+              title={pr_thumbnails}
+            />
+          </Box>
 
           <CardContent>
             {type !== "addToCart" ? (
