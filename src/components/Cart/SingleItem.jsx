@@ -172,6 +172,9 @@ function SingleItem({
             ""
           )}
           <CardMedia
+            onClick={() => {
+              navigate(`/single-product/${con_id}`);
+            }}
             sx={{ minHeight: 140, maxHeight: 150 }}
             image={`${BASE_URL}images/contest_cover/${thumb}`}
             title={item}
@@ -193,16 +196,24 @@ function SingleItem({
               ""
             )}
 
-            <Typography
-              fontSize={14}
-              fontWeight="bold"
-              sx={{ cursor: "pointer" }}
+            <div
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 navigate(`/single-product/${con_id}`);
               }}
             >
-              WIN {item}
-            </Typography>
+              <Typography
+                fontSize={14}
+                fontWeight="bold"
+                sx={{ cursor: "pointer" }}
+                onClick={() => {
+                  navigate(`/single-product/${con_id}`);
+                }}
+              >
+                WINA {item}
+              </Typography>
+            </div>
+
             {type === "addToCart" ? (
               <Box sx={{ display: "flex", flexWrap: "wrap" }}>
                 <Box
