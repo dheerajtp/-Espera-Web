@@ -29,11 +29,6 @@ function PaymentForm({ totalValue, selected }) {
         type: "card",
         card: cardElement,
       });
-      let amount = totalValue;
-      if (selected === 2) {
-        amount += 5;
-      }
-      console.log(paymentMethod);
       let body = {
         intent_id: paymentMethod.id,
       };

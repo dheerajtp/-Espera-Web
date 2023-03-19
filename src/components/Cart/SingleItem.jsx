@@ -29,6 +29,7 @@ function SingleItem({
   prName,
   date,
   price,
+  pr_thumbnails,
 }) {
   const navigate = useNavigate();
   let width_percent = (spot * 100) / total;
@@ -73,11 +74,22 @@ function SingleItem({
             borderColor: "#E5E5E5",
           }}
         >
+          {/* <Box sx={{ display: "flex", alignItems: "center" }}> */}
           <CardMedia
             sx={{ minHeight: 140, maxHeight: 150 }}
             image={images.soldOut}
             title={item}
           />
+          {/* <CardMedia
+              onClick={() => {
+                navigate(`/single-product/${con_id}`);
+              }}
+              sx={{ minHeight: 140, maxHeight: 150 }}
+              image={`${BASE_URL}images/contest_cover/${pr_thumbnails}`}
+              title={pr_thumbnails}
+            /> */}
+          {/* </Box> */}
+
           <CardContent>
             <Typography
               fontSize={14}
@@ -171,6 +183,7 @@ function SingleItem({
           ) : (
             ""
           )}
+          {/* <Box sx={{ display: "flex", alignItems: "center" }}> */}
           <CardMedia
             onClick={() => {
               navigate(`/single-product/${con_id}`);
@@ -179,6 +192,21 @@ function SingleItem({
             image={`${BASE_URL}images/contest_cover/${thumb}`}
             title={item}
           />
+          {/* <CardMedia
+            onClick={() => {
+              navigate(`/single-product/${con_id}`);
+            }}
+            sx={{
+              minHeight: 140,
+              maxHeight: 150,
+              ml: 2,
+              mt: { xs: 2, sm: 0 },
+            }}
+            image={`${BASE_URL}images/contest_cover/${pr_thumbnails}`}
+            title={pr_thumbnails}
+          /> */}
+          {/* </Box> */}
+
           <CardContent>
             {type !== "addToCart" ? (
               <Typography
