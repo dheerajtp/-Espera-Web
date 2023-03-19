@@ -31,8 +31,15 @@ export const getCartItems = async ({ queryKey }) => {
   return data;
 };
 
-export const updateQuantity = async (body) => {
-  console.log(body);
+export const updateQuantity = async (input) => {
+  let body = {
+    quantity: input.quantity,
+  };
+  let { data } = await APIConfiguration.API.post(
+    `contest/updateQuantity/${input.order_id}/`,
+    body
+  );
+  return data;
 };
 
 export const getSingleProduct = async ({ queryKey }) => {
