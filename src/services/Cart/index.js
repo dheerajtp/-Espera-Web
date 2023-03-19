@@ -42,6 +42,14 @@ export const updateQuantity = async (input) => {
   return data;
 };
 
+export const confirmPaymentIntent = async (body) => {
+  let { data } = await APIConfiguration.API.post(
+    `user/paymentIntentConfirm`,
+    body
+  );
+  return data;
+};
+
 export const getSingleProduct = async ({ queryKey }) => {
   let conId = queryKey[1];
   let { data } = await APIConfiguration.API.get(

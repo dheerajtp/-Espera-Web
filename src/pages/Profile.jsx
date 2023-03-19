@@ -85,21 +85,28 @@ function Profile() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                marginBottom: "3rem",
               }}
             >
               {settings_list.map((item) => {
                 return (
-                  <ListItem
-                    disablePadding
-                    sx={{ width: "auto", margin: "0 16px" }}
-                    key={item.key}
-                  >
-                    <ListItemButton
-                      onClick={() => handleItemClick(item.name, item.route)}
+                  <Box m={1}>
+                    <ListItem
+                      disablePadding
+                      sx={{
+                        width: "auto",
+                        margin: "0 16px",
+                        border: "1px solid black",
+                      }}
+                      key={item.key}
                     >
-                      <ListItemText primary={item.name} />
-                    </ListItemButton>
-                  </ListItem>
+                      <ListItemButton
+                        onClick={() => handleItemClick(item.name, item.route)}
+                      >
+                        <ListItemText primary={item.name} />
+                      </ListItemButton>
+                    </ListItem>
+                  </Box>
                 );
               })}
             </List>

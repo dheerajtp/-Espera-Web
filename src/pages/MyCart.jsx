@@ -49,7 +49,12 @@ function MyCart() {
   return (
     <>
       <Header />
-      <ModalComponent openModal={openModal} handleClose={handleClose} />
+      <ModalComponent
+        openModal={openModal}
+        handleClose={handleClose}
+        selected={selected}
+        totalValue={totalValue}
+      />
       <MUICartHeader />
       {isSuccess ? (
         <Box

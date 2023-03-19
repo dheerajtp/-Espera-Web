@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   addAddress,
   addToCart,
+  confirmPaymentIntent,
   getAddress,
   getCartItems,
   getSingleProduct,
@@ -49,4 +50,8 @@ export const useRemoveFromCart = () => {
 
 export const useUpdateQuantity = () => {
   return useMutation(updateQuantity);
+};
+
+export const useConfirmPaymentIntent = () => {
+  return useMutation(confirmPaymentIntent);
 };

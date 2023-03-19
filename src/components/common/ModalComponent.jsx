@@ -3,11 +3,10 @@ import { Grid, Modal } from "@mui/material";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentForm from "../WishList/PaymentForm";
+import { STRIPE_KEY } from "../../configuration";
 
-function ModalComponent({ openModal, handleClose }) {
-  const stripePromise = loadStripe(
-    "pk_test_51H2711DqIVpJBt3RNYIncduJKSJPxTwEYygd4qrZYO34egsxttr06XhTnbZV37mXlAQFqNt2bSvvW2Rvemdn95d3006HwkMWBM"
-  );
+function ModalComponent({ openModal, handleClose, selected, totalValue }) {
+  const stripePromise = loadStripe(STRIPE_KEY);
   return (
     <Modal
       open={openModal}
@@ -30,7 +29,7 @@ function ModalComponent({ openModal, handleClose }) {
         }} // optional: set a height to fill the screen
       >
         <Elements stripe={stripePromise}>
-          <PaymentForm />
+          <PaymentForm selected={selected} totalValue={totalValue} />
         </Elements>
       </Grid>
     </Modal>

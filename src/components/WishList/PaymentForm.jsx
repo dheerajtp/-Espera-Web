@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { Box, Button, Grid, Typography } from "@mui/material";
+import { useConfirmPaymentIntent } from "../../utils/hooks/Cart/useCart";
 
-function PaymentForm() {
+function PaymentForm({ totalValue, selected }) {
   const stripe = useStripe();
   const elements = useElements();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+
+  const { mutate } = useConfirmPaymentIntent();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,9 +29,22 @@ function PaymentForm() {
         type: "card",
         card: cardElement,
       });
-
+      let amount = totalValue;
+      if (selected === 2) {
+        amount += 5;
+      }
       console.log(paymentMethod);
-
+      let body = {
+        intent_id: paymentMethod.id,
+      };
+      mutate(body, {
+        onSuccess: (data) => {
+          console.log(data);
+        },
+        onError: (data) => {
+          console.log(data);
+        },
+      });
       setSuccess(true);
       setError(null);
     } catch (error) {
