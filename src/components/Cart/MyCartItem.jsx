@@ -57,12 +57,22 @@ function MyCartItem({ order_id, quantity, pr_name, con_win, image, pr_price }) {
     });
   };
   return (
-    <Grid item xs={12} sm={6} md={3} lg={3}>
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      md={3}
+      lg={3}
+      justifyContent="center"
+      alignItems="center"
+    >
       <Card
         sx={{
           borderRadius: 4,
-          border: "2px solid green",
-          borderWidth: 4,
+          border: "2px solid black",
+          borderWidth: 2,
+          minWidth: 320,
+          maxWidth: 320,
         }}
       >
         <CardHeader title={pr_name} />

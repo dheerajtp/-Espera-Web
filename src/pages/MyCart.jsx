@@ -44,7 +44,6 @@ function MyCart() {
       {isSuccess ? (
         <Box
           sx={{
-            margin: "2rem",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -56,7 +55,7 @@ function MyCart() {
             },
           }}
         >
-          <Container sx={{ margin: "2rem", maxWidth: "100%" }}>
+          <Container sx={{ maxWidth: "100%" }}>
             <Grid
               container
               spacing={10}
