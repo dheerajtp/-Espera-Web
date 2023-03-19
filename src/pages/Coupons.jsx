@@ -3,7 +3,7 @@ import Header from "../components/common/Header";
 import Loading from "../components/common/Loading";
 import Sidebar from "../components/common/Sidebar";
 import { useGetCoupons } from "../utils/hooks/Coupons/useCoupons";
-import { Box, Container, Grid, Typography, Button } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import SingleCoupon from "../components/Coupon/SingleCoupon";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";

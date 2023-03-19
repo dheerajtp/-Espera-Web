@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Header from "../components/common/Header";
 import Sidebar from "../components/common/Sidebar";
 import { MUICartHeader } from "../mui/cart/cart";
-import { useGetCartItems, useGetAddress } from "../utils/hooks/Cart/useCart";
+import { useGetCartItems } from "../utils/hooks/Cart/useCart";
 import { useSelector } from "react-redux";
 import Loading from "../components/common/Loading";
 import MyCartItem from "../components/Cart/MyCartItem";
 import { Navigate } from "react-router-dom";
 import { Box, Container, Grid, Typography, Button } from "@mui/material";
+import ModalComponent from "../components/common/ModalComponent";
 
 function MyCart() {
   const [selected, setSelected] = useState(1);
@@ -16,15 +17,23 @@ function MyCart() {
     { id: 1, label: "Outlet collection" },
     { id: 2, label: "Home Delivery" },
   ];
+  const [openModal, setOpenModal] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
   const handleClick = (id) => {
     setSelected(id);
   };
   const user = useSelector((state) => state.user.value.user);
   let { data, isSuccess } = useGetCartItems(user.user_id);
-  let { data: address, isSuccess: addressIsSuccess } = useGetAddress(
-    user.user_id
-  );
+  // let { data: address, isSuccess: addressIsSuccess } = useGetAddress(
+  //   user.user_id
+  // );
 
   if (Object.keys(user).length === 0) {
     return <Navigate to="/login" />;
@@ -40,6 +49,7 @@ function MyCart() {
   return (
     <>
       <Header />
+      <ModalComponent openModal={openModal} handleClose={handleClose} />
       <MUICartHeader />
       {isSuccess ? (
         <Box
@@ -179,6 +189,7 @@ function MyCart() {
                       bgcolor: "#4A4A4A",
                     },
                   }}
+                  onClick={handleClickOpen}
                 >
                   PAY NOW
                 </Button>
