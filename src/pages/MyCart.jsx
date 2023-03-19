@@ -30,6 +30,13 @@ function MyCart() {
     return <Navigate to="/login" />;
   }
 
+  const totalValue = isSuccess
+    ? data.reduce(
+        (accumulator, item) => accumulator + item.quantity * item.pr_price,
+        0
+      )
+    : 0;
+
   return (
     <>
       <Header />
@@ -67,6 +74,7 @@ function MyCart() {
                     con_win={item.con_win}
                     image={item.con_thumbnails}
                     pr_price={item.pr_price}
+                    order_id={item.order_id}
                   />
                 );
               })}
@@ -111,7 +119,7 @@ function MyCart() {
               </Grid>
               <Grid item xs={6}>
                 <Typography color="white" align="right">
-                  35.0 USD
+                  {totalValue.toFixed(2)} USD
                 </Typography>
               </Grid>
               <Grid item xs={12}>
