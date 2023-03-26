@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import Header from "../components/common/Header";
 import Sidebar from "../components/common/Sidebar";
 import { MUICartHeader } from "../mui/cart/cart";
-import { useGetCartItems } from "../utils/hooks/Cart/useCart";
+import { useGetCartItems, useGetAddress } from "../utils/hooks/Cart/useCart";
 import { useSelector } from "react-redux";
 import Loading from "../components/common/Loading";
 import MyCartItem from "../components/Cart/MyCartItem";
 import { Navigate } from "react-router-dom";
 import { Box, Container, Grid, Typography, Button } from "@mui/material";
 import ModalComponent from "../components/common/ModalComponent";
+import AddAddress from "../components/common/AddAddress";
 
 function MyCart() {
   const [selected, setSelected] = useState(1);
@@ -18,9 +19,14 @@ function MyCart() {
     { id: 2, label: "Home Delivery" },
   ];
   const [openModal, setOpenModal] = useState(false);
+  const [openAddress, setOpenAddress] = useState(false);
 
   const handleClickOpen = () => {
     setOpenModal(true);
+  };
+
+  const handleAddressClose = () => {
+    setOpenAddress(false);
   };
 
   const handleClose = () => {
@@ -31,9 +37,7 @@ function MyCart() {
   };
   const user = useSelector((state) => state.user.value.user);
   let { data, isSuccess } = useGetCartItems(user.user_id);
-  // let { data: address, isSuccess: addressIsSuccess } = useGetAddress(
-  //   user.user_id
-  // );
+  let { data: address } = useGetAddress(user.user_id);
 
   if (Object.keys(user).length === 0) {
     return <Navigate to="/login" />;
@@ -54,6 +58,11 @@ function MyCart() {
         handleClose={handleClose}
         selected={selected}
         totalValue={totalValue}
+        cartDetails={data}
+      />
+      <AddAddress
+        openModal={openAddress}
+        handleClose={handleAddressClose}
       />
       <MUICartHeader />
       {isSuccess ? (
@@ -194,7 +203,15 @@ function MyCart() {
                       bgcolor: "#4A4A4A",
                     },
                   }}
-                  onClick={handleClickOpen}
+                  onClick={() => {
+                    console.log(address);
+                    console.log(selected);
+                    if (selected === 2 && !address[0]?.user_address) {
+                      // alert("add address first");
+                      setOpenAddress(true);
+                    }
+                    handleClickOpen();
+                  }}
                 >
                   PAY NOW
                 </Button>

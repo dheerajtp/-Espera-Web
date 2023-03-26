@@ -5,7 +5,13 @@ import { Elements } from "@stripe/react-stripe-js";
 import PaymentForm from "../WishList/PaymentForm";
 import { STRIPE_KEY } from "../../configuration";
 
-function ModalComponent({ openModal, handleClose, selected, totalValue }) {
+function ModalComponent({
+  openModal,
+  handleClose,
+  selected,
+  totalValue,
+  cartDetails,
+}) {
   const stripePromise = loadStripe(STRIPE_KEY);
   return (
     <Modal
@@ -29,7 +35,12 @@ function ModalComponent({ openModal, handleClose, selected, totalValue }) {
         }} // optional: set a height to fill the screen
       >
         <Elements stripe={stripePromise}>
-          <PaymentForm selected={selected} totalValue={totalValue} />
+          <PaymentForm
+            selected={selected}
+            totalValue={totalValue}
+            cartDetails={cartDetails}
+            handleClose={handleClose}
+          />
         </Elements>
       </Grid>
     </Modal>

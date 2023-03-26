@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Grid,
@@ -23,6 +23,7 @@ function MyCartItem({ order_id, quantity, pr_name, con_win, image, pr_price }) {
   const { mutate, isLoading } = useRemoveFromCart();
   const { mutate: updateQuantity, isLoading: updateQuantityIsLoading } =
     useUpdateQuantity();
+  useEffect(() => {}, [itemQuantity]);
   const removeItem = () => {
     let item = {
       order_id,
@@ -38,23 +39,42 @@ function MyCartItem({ order_id, quantity, pr_name, con_win, image, pr_price }) {
       },
     });
   };
-  const increaseQuantity = () => {
-    let item = {
-      order_id,
-      quantity: itemQuantity + 1,
-    };
-    setItemQuantity(itemQuantity + 1);
-    updateQuantity(item, {
-      onSuccess: (data) => {
-        console.log("data", data);
-        toast.success("Quantity succesfully updated");
-        queryClient.invalidateQueries({ queryKey: ["use-get-cart"] });
-      },
-      onError: () => {
-        queryClient.invalidateQueries({ queryKey: ["use-get-cart"] });
-        toast.error("Some error occured");
-      },
-    });
+  const increaseQuantity = (type) => {
+    let item;
+    if (type === "add") {
+      item = {
+        order_id,
+        quantity: itemQuantity + 1,
+      };
+      setItemQuantity(itemQuantity + 1);
+    } else {
+      item = {
+        order_id,
+        quantity: itemQuantity - 1,
+      };
+    }
+
+    if (type === "minus" && itemQuantity-1 === 0) {
+      setItemQuantity(0);
+      removeItem();
+    } else {
+      if (type === "minus") {
+        setItemQuantity(itemQuantity - 1);
+      } else {
+        setItemQuantity(itemQuantity + 1);
+      }
+      updateQuantity(item, {
+        onSuccess: (data) => {
+          console.log("data", data);
+          toast.success("Quantity succesfully updated");
+          queryClient.invalidateQueries({ queryKey: ["use-get-cart"] });
+        },
+        onError: () => {
+          queryClient.invalidateQueries({ queryKey: ["use-get-cart"] });
+          toast.error("Some error occured");
+        },
+      });
+    }
   };
   return (
     <Grid
@@ -110,14 +130,22 @@ function MyCartItem({ order_id, quantity, pr_name, con_win, image, pr_price }) {
                       }}
                     >
                       <IconButton disabled={isLoading}>
-                        <Remove onClick={removeItem} />
+                        <Remove
+                          onClick={() => {
+                            increaseQuantity("minus");
+                          }}
+                        />
                       </IconButton>
 
                       <Typography variant="P" align="center">
                         {itemQuantity}
                       </Typography>
                       <IconButton disabled={updateQuantityIsLoading}>
-                        <Add onClick={increaseQuantity} />
+                        <Add
+                          onClick={() => {
+                            increaseQuantity("add");
+                          }}
+                        />
                       </IconButton>
                     </Box>
                   </Grid>
