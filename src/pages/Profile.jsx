@@ -28,8 +28,9 @@ function Profile() {
     { key: 2, name: "Wishlist", route: "/wish-list" },
     { key: 3, name: "Active Coupons", route: "/coupons" },
     { key: 4, name: "Settings", route: "/settings" },
-    { key: 5, name: "Logout", route: "/login" },
-    { key: 6, name: "How It Works", route: "/how-it-works" },
+    { key: 5, name: "How It Works", route: "/how-it-works" },
+    { key: 6, name: "Terms & Conditions", route: "/terms-and-conditions" },
+    { key: 6, name: "Logout", route: "/login" },
   ];
 
   if (Object.keys(user).length === 0) {
@@ -67,35 +68,45 @@ function Profile() {
                 <Person sx={{ color: "white" }} />
               </Avatar>
               <Typography variant="h5" sx={{ mt: 2 }}>
-                "Amir abbasy test"
+                {data[0].fullname ? data[0].fullname : ""}
               </Typography>
               <Typography
                 variant="subtitle1"
                 sx={{ mt: 1, color: "text.secondary" }}
               >
-                "amir"
+                {data[0].username ? data[0].username : ""}
               </Typography>
             </Box>
             <List
               sx={{
+                // display: "flex",
+                // flexWrap: "wrap",
+                // justifyContent: "center",
                 display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+                marginBottom: "3rem",
               }}
             >
               {settings_list.map((item) => {
                 return (
-                  <ListItem
-                    disablePadding
-                    sx={{ width: "auto", margin: "0 16px" }}
-                    key={item.key}
-                  >
-                    <ListItemButton
-                      onClick={() => handleItemClick(item.name, item.route)}
+                  <Box m={1}>
+                    <ListItem
+                      disablePadding
+                      sx={{
+                        width: "auto",
+                        margin: "0 16px",
+                        border: "1px solid black",
+                      }}
+                      key={item.key}
                     >
-                      <ListItemText primary={item.name} />
-                    </ListItemButton>
-                  </ListItem>
+                      <ListItemButton
+                        onClick={() => handleItemClick(item.name, item.route)}
+                      >
+                        <ListItemText primary={item.name} />
+                      </ListItemButton>
+                    </ListItem>
+                  </Box>
                 );
               })}
             </List>

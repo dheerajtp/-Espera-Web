@@ -32,7 +32,7 @@ export const MUIBottomNavigationComponent = () => {
       }}
     >
       <BottomNavigation
-        showLabels
+        showLabel
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);

@@ -1,8 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
+  addAddress,
   addToCart,
+  confirmPaymentIntent,
+  getAddress,
   getCartItems,
   getSingleProduct,
+  removeFromCart,
+  updateQuantity,
 } from "../../../services/Cart";
 import { toast } from "react-toastify";
 
@@ -29,4 +34,24 @@ export const useGetCartItems = (userId) => {
 
 export const useGetSingleProduct = (conId) => {
   return useQuery(["use-single-product", conId], getSingleProduct);
+};
+
+export const useGetAddress = (userId) => {
+  return useQuery(["use-get-address", userId], getAddress);
+};
+
+export const useAddAddress = () => {
+  return useMutation(addAddress);
+};
+
+export const useRemoveFromCart = () => {
+  return useMutation(removeFromCart);
+};
+
+export const useUpdateQuantity = () => {
+  return useMutation(updateQuantity);
+};
+
+export const useConfirmPaymentIntent = () => {
+  return useMutation(confirmPaymentIntent);
 };

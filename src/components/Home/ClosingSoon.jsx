@@ -60,6 +60,7 @@ function ClosingSoon() {
                   prName={item.pr_name}
                   date={item.con_enddate}
                   price={item.pr_price}
+                  pr_thumbnails={item.pr_thumbnails}
                 />
               );
             })

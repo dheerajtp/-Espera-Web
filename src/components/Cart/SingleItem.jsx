@@ -29,10 +29,13 @@ function SingleItem({
   prName,
   date,
   price,
+  pr_thumbnails,
 }) {
   const navigate = useNavigate();
   let width_percent = (spot * 100) / total;
   const user = useSelector((state) => state.user.value.user);
+  const { currency } = useSelector((state) => state.currency.value);
+  const defaultCurrency = currency.filter((item) => item.default === 1)[0];
   let { refetch } = useAddToCart(con_id, product_id, user.user_id);
   const addToCart = () => {
     if (user === null) {
@@ -66,18 +69,34 @@ function SingleItem({
             backgroundColor: "#fff",
             paddingHorizontal: 10,
             paddingVertical: 2,
-            minHeight: 320,
-            maxHeight: 320,
+            minHeight: 340,
+            maxHeight: 340,
             position: "relative",
             borderWidth: 10,
             borderColor: "#E5E5E5",
           }}
         >
-          <CardMedia
-            sx={{ minHeight: 140, maxHeight: 150 }}
-            image={images.soldOut}
-            title={item}
-          />
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <CardMedia
+              sx={{ minHeight: 140, maxHeight: 150, width: "50%" }}
+              image={images.soldOut}
+              title={item}
+            />
+            <CardMedia
+              onClick={() => {
+                navigate(`/single-product/${con_id}`);
+              }}
+              sx={{
+                minHeight: 140,
+                maxHeight: 150,
+                width: "50%",
+                ml: 2,
+              }}
+              image={`${BASE_URL}images/contest_cover/${pr_thumbnails}`}
+              title={pr_thumbnails}
+            />
+          </Box>
+
           <CardContent>
             <Typography
               fontSize={14}
@@ -156,8 +175,8 @@ function SingleItem({
             backgroundColor: "#fff",
             paddingHorizontal: 10,
             paddingVertical: 2,
-            minHeight: 320,
-            maxHeight: 320,
+            minHeight: 340,
+            maxHeight: 340,
           }}
         >
           {type === "addToCart" ? (
@@ -171,11 +190,30 @@ function SingleItem({
           ) : (
             ""
           )}
-          <CardMedia
-            sx={{ minHeight: 140, maxHeight: 150 }}
-            image={`${BASE_URL}images/contest_cover/${thumb}`}
-            title={item}
-          />
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <CardMedia
+              onClick={() => {
+                navigate(`/single-product/${con_id}`);
+              }}
+              sx={{ minHeight: 140, maxHeight: 150, width: "50%" }}
+              image={`${BASE_URL}images/contest_cover/${thumb}`}
+              title={item}
+            />
+            <CardMedia
+              onClick={() => {
+                navigate(`/single-product/${con_id}`);
+              }}
+              sx={{
+                minHeight: 140,
+                maxHeight: 150,
+                width: "50%",
+                ml: 2,
+              }}
+              image={`${BASE_URL}images/contest_cover/${pr_thumbnails}`}
+              title={pr_thumbnails}
+            />
+          </Box>
+
           <CardContent>
             {type !== "addToCart" ? (
               <Typography
@@ -193,29 +231,37 @@ function SingleItem({
               ""
             )}
 
-            <Typography
-              fontSize={14}
-              fontWeight="bold"
-              sx={{ cursor: "pointer" }}
+            <div
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 navigate(`/single-product/${con_id}`);
               }}
             >
-              WIN {item}
-            </Typography>
+              <Typography
+                fontSize={14}
+                fontWeight="bold"
+                sx={{ cursor: "pointer" }}
+                onClick={() => {
+                  navigate(`/single-product/${con_id}`);
+                }}
+              >
+                WINA {item}
+              </Typography>
+            </div>
+
             {type === "addToCart" ? (
               <Box sx={{ display: "flex", flexWrap: "wrap" }}>
                 <Box
                   sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}
                 >
                   <Typography fontSize={14} fontWeight="bold">
-                    {price}.0
+                    {price * defaultCurrency.price}
                   </Typography>
                   <Typography
                     sx={{ marginLeft: "0.5rem", flexGrow: 1 }}
                     fontSize={14}
                   >
-                    USD Only
+                    {defaultCurrency.code} Only
                   </Typography>
                   <Button
                     variant="contained"
