@@ -36,6 +36,8 @@ function MyCart() {
     setSelected(id);
   };
   const user = useSelector((state) => state.user.value.user);
+  const { currency } = useSelector((state) => state.currency.value);
+  const defaultCurrency = currency.filter((item) => item.default === 1)[0];
   let { data, isSuccess } = useGetCartItems(user.user_id);
   let { data: address } = useGetAddress(user.user_id);
 
@@ -107,7 +109,7 @@ function MyCart() {
       ) : (
         <Loading />
       )}
-      {isSuccess ? (
+      {isSuccess && data.length>0 ? (
         <>
           <Box
             sx={{
@@ -142,7 +144,7 @@ function MyCart() {
               </Grid>
               <Grid item xs={6}>
                 <Typography color="white" align="right">
-                  {totalValue.toFixed(2)} USD
+                  {totalValue.toFixed(2)*defaultCurrency.price} {defaultCurrency.code}
                 </Typography>
               </Grid>
               <Grid item xs={12}>

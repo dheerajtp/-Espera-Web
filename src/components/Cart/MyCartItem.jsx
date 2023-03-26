@@ -16,9 +16,12 @@ import {
 } from "../../utils/hooks/Cart/useCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 function MyCartItem({ order_id, quantity, pr_name, con_win, image, pr_price }) {
   const queryClient = useQueryClient();
+  const { currency } = useSelector((state) => state.currency.value);
+  const defaultCurrency = currency.filter((item) => item.default === 1)[0];
   let [itemQuantity, setItemQuantity] = useState(Number(quantity));
   const { mutate, isLoading } = useRemoveFromCart();
   const { mutate: updateQuantity, isLoading: updateQuantityIsLoading } =
@@ -54,7 +57,7 @@ function MyCartItem({ order_id, quantity, pr_name, con_win, image, pr_price }) {
       };
     }
 
-    if (type === "minus" && itemQuantity-1 === 0) {
+    if (type === "minus" && itemQuantity - 1 === 0) {
       setItemQuantity(0);
       removeItem();
     } else {
@@ -112,7 +115,7 @@ function MyCartItem({ order_id, quantity, pr_name, con_win, image, pr_price }) {
                 <Grid container spacing={0.5} alignItems="center">
                   <Grid item xs={12}>
                     <Typography variant="h6" align="center">
-                      {pr_price}.0 USD
+                      {pr_price * defaultCurrency.price} {defaultCurrency.code}
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>

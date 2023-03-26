@@ -34,6 +34,8 @@ function SingleItem({
   const navigate = useNavigate();
   let width_percent = (spot * 100) / total;
   const user = useSelector((state) => state.user.value.user);
+  const { currency } = useSelector((state) => state.currency.value);
+  const defaultCurrency = currency.filter((item) => item.default === 1)[0];
   let { refetch } = useAddToCart(con_id, product_id, user.user_id);
   const addToCart = () => {
     if (user === null) {
@@ -253,13 +255,13 @@ function SingleItem({
                   sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}
                 >
                   <Typography fontSize={14} fontWeight="bold">
-                    {price}.0
+                    {price * defaultCurrency.price}
                   </Typography>
                   <Typography
                     sx={{ marginLeft: "0.5rem", flexGrow: 1 }}
                     fontSize={14}
                   >
-                    USD Only
+                    {defaultCurrency.code} Only
                   </Typography>
                   <Button
                     variant="contained"

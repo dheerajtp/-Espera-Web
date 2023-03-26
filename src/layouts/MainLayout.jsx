@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import SingleProduct from "../pages/SingleProduct";
 import SignupPage from "../pages/SignupPage";
 import HowItWorks from "../pages/HowItWorks";
+import Settings from "../pages/Settings";
 
 function MainLayout() {
   return (
@@ -24,7 +25,8 @@ function MainLayout() {
         <Route path="/login" element={<Login />} />
         <Route path="/single-product/:id" element={<SingleProduct />} />
         <Route path="/register" element={<SignupPage />} />
-        <Route path="/how-it-works" element={<HowItWorks/>} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </Router>
   );
