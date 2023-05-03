@@ -11,6 +11,7 @@ import SingleProduct from "../pages/SingleProduct";
 import SignupPage from "../pages/SignupPage";
 import HowItWorks from "../pages/HowItWorks";
 import Settings from "../pages/Settings";
+import Support from "../pages/Support";
 
 function MainLayout() {
   return (
@@ -27,6 +28,7 @@ function MainLayout() {
         <Route path="/register" element={<SignupPage />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/support" element={<Support />} />
       </Routes>
     </Router>
   );
